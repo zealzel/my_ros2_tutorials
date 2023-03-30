@@ -15,17 +15,17 @@ find_package(rclcpp REQUIRED)
 find_package(std_msgs REQUIRED)
 
 add_executable(mytalker src/mytalker.cpp)
-ament_target_dependencies(mytalker
-  rclcpp
-  std_msgs
-)
+ament_target_dependencies(mytalker rclcpp std_msgs)
+
+add_executable(mylistener src/mylistener.cpp)
+ament_target_dependencies(mylistener rclcpp std_msgs)
 
 install(DIRECTORY launch
   DESTINATION share/${PROJECT_NAME}
 )
 
 install(TARGETS
-  mytalker
+  mytalker mylistener
   DESTINATION lib/${PROJECT_NAME})
 
 ament_package()
