@@ -11,7 +11,7 @@ def generate_launch_description():
     launch_demo1 = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
             os.path.join(
-                get_package_share_directory("my_ros2_tutorials"),
+                get_package_share_directory("tut1"),
                 "launch",
                 "demo1.launch.py",
             )

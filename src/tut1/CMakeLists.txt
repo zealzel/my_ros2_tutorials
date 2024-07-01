@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.8)
-project(my_ros2_tutorials)
+project(tut1)
 
 # Default to C++14
 if(NOT CMAKE_CXX_STANDARD)
