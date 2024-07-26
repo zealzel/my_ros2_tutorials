@@ -1,7 +1,7 @@
 from setuptools import find_packages, setup
 from glob import glob
 
-package_name = "xxxx"
+package_name = "py_tut1"
 
 setup(
     name=package_name,
@@ -21,8 +21,8 @@ setup(
     tests_require=["pytest"],
     entry_points={
         "console_scripts": [
-            "mytalker_node = xxxx.mytalker:main",
-            "mylistener_node = xxxx.mylistener:main",
+            "mytalker_node = py_tut1.mytalker:main",
+            "mylistener_node = py_tut1.mylistener:main",
         ],
     },
 )

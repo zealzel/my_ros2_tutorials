@@ -12,7 +12,7 @@ class MyTalker(Node):
 
     def timer_callback(self):
         msg = String()
-        msg.data = "Hello, world!"
+        msg.data = f"Hello, world! counter: {self.counter}"
         self.pub_.publish(msg)
         self.get_logger().info("Publishing: '%s'" % msg.data)
         self.counter += 1
