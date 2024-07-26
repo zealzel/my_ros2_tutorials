@@ -14,9 +14,18 @@ find_package(my_interfaces REQUIRED)
 add_executable(my_pub src/pub.cpp)
 ament_target_dependencies(my_pub rclcpp my_interfaces)
 
+add_executable(my_sub src/sub.cpp)
+ament_target_dependencies(my_sub rclcpp my_interfaces)
+
+include_directories(
+  include
+  ${fitrobot_interfaces_INCLUDE_DIRS}  # This line should typically be unnecessary
+)
+
 
 install(TARGETS
   my_pub
+  my_sub
   DESTINATION lib/${PROJECT_NAME}
 )
 
