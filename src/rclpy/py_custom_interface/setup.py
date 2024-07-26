@@ -20,6 +20,7 @@ setup(
     entry_points={
         "console_scripts": [
             "custom_pub = py_custom_interface.pub:main",
+            "custom_sub = py_custom_interface.sub:main",
         ],
     },
 )
