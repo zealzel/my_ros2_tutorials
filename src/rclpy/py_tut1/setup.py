@@ -23,6 +23,8 @@ setup(
         "console_scripts": [
             "mytalker_node = py_tut1.mytalker:main",
             "mylistener_node = py_tut1.mylistener:main",
+            "myservice_node = py_tut1.myservice:main",
+            "myservice_client_node = py_tut1.myservice_client:main",
         ],
     },
 )
