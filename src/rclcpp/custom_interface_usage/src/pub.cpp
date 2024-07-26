@@ -8,11 +8,12 @@ using namespace std::chrono_literals;
 
 class MyCustomPub : public rclcpp::Node {
   public:
-    MyCustomPub() : Node("my_custom_pub"), counter(0) {
+    MyCustomPub() : Node("my_custom_pub") {
         pub_ = this->create_publisher<my_interfaces::msg::Num>("my_topic", 10);
         pub2_ = this->create_publisher<my_interfaces::msg::Sphere>("my_sphere_topic", 10);
         timer_ = this->create_wall_timer(500ms, std::bind(&MyCustomPub::timer_callback, this));
-        timer2_ = this->create_wall_timer(100ms, std::bind(&MyCustomPub::timer2_callback, this))
+        timer2_ = this->create_wall_timer(100ms, std::bind(&MyCustomPub::timer2_callback, this));
+        counter = 0;
     }
 
   private:
