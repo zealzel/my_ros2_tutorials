@@ -12,7 +12,9 @@ find_package(pluginlib REQUIRED)
 add_executable(area_node src/area_node.cpp)
 target_include_directories(
   area_node PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-                   $<INSTALL_INTERFACE:include>)
+                   $<INSTALL_INTERFACE:include>
+)
+
 target_compile_features(area_node PUBLIC c_std_99 cxx_std_17)
 ament_target_dependencies(area_node "pluginlib")
 
