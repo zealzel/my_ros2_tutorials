@@ -43,7 +43,7 @@ def main():
     rclpy.init()
     my_custom_pub = CustomPub()
     rclpy.spin(my_custom_pub)
-    rclpy.destroy_node(my_custom_pub)
+    my_custom_pub.destroy_node()
     rclpy.shutdown()
 
 
