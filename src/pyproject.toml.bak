@@ -1,0 +1,4 @@
+# [tool.pyright]
+# typeCheckingMode = "off" # off|basic|strict
+# [tool.basedpyright]
+# typeCheckingMode = "standard" # off|standard|strict

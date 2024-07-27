@@ -1,7 +1,6 @@
 import random
 import rclpy
 from rclpy.node import Node
-from geometry_msgs.msg import Point
 from my_interfaces.msg import Num, Sphere
 # from my_interfaces.srv import AddThreeInts
 
