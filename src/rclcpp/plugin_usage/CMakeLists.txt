@@ -18,6 +18,9 @@ target_include_directories(
 target_compile_features(area_node PUBLIC c_std_99 cxx_std_17)
 ament_target_dependencies(area_node "pluginlib")
 
-install(TARGETS area_node DIRECTORY include/ lib/${PROJECT_NAME})
+install(DIRECTORY include/ DESTINATION include)
 
+install(TARGETS area_node DESTINATION lib/${PROJECT_NAME})
+
+ament_export_include_directories(include)
 ament_package()
