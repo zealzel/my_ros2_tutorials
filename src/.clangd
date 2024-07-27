@@ -1,0 +1,6 @@
+If:
+  PathExclude: [CP-RT/*, CP-NRT/*]
+CompileFlags:
+  Remove: -fno-ipa-sra
+Diagnostics:
+  UnusedIncludes: None # Strict|None
