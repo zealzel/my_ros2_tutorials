@@ -1,3 +1,4 @@
+#include "my_interfaces/msg/april_tag_detection_array.hpp"
 #include "my_interfaces/msg/num.hpp"
 #include "my_interfaces/msg/sphere.hpp"
 #include "rclcpp/rclcpp.hpp"

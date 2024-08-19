@@ -1,0 +1,6 @@
+some_node:
+  ros__parameters:
+    name: foo
+    x_pos: 10
+    y_pos: 15
+    is_ok: true
