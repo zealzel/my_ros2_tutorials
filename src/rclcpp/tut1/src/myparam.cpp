@@ -11,9 +11,9 @@ using namespace std::chrono_literals;
 class myParam : public rclcpp::Node {
   public:
     myParam(const std::string& name) : Node(name) {
-        this->declare_parameter("name", "karthik");
-        this->declare_parameter("x_pos", 10);
-        this->declare_parameter("y_pos", 20);
+        this->declare_parameter("name", "default_name");
+        this->declare_parameter("x_pos", 0);
+        this->declare_parameter("y_pos", 0);
         this->declare_parameter("is_ok", true);
         sub_ = this->create_subscription<std_msgs::msg::String>(
             "changeName", 10, std::bind(&myParam::myTopicCallback, this, _1));
