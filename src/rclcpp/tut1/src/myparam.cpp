@@ -29,25 +29,25 @@ class myParam : public rclcpp::Node {
     rclcpp::TimerBase::SharedPtr timer_;
 
     void myTimerCallback() {
-        RCLCPP_INFO(this->get_logger(), "!");
         std_msgs::msg::String msg = std_msgs::msg::String();
-        RCLCPP_INFO(this->get_logger(), "22");
         std::string name = this->get_parameter("name").as_string();
-        RCLCPP_INFO(this->get_logger(), "33");
-        std::string x_pos = this->get_parameter("x_pos").as_string();
-        std::string y_pos = this->get_parameter("y_pos").as_string();
-        RCLCPP_INFO(this->get_logger(), "44");
-        std::string is_ok = this->get_parameter("is_ok").as_string();
-        RCLCPP_INFO(this->get_logger(), "55");
-        // cast x_pos into string
-        msg.data =
-            "name: " + name + "\nx_pos: " + x_pos + "\ny_pos: " + y_pos + "\nis_ok: " + is_ok;
+        int x_pos = this->get_parameter("x_pos").as_int();
+        int y_pos = this->get_parameter("y_pos").as_int();
+        bool is_ok = this->get_parameter("is_ok").as_bool();
+        std::string isOK = is_ok ? "true" : "false";
+        msg.data = "name: " + name + "|x_pos: " + std::to_string(x_pos) +
+                   "|y_pos: " + std::to_string(y_pos) + "|is_ok: " + isOK;
         RCLCPP_INFO(this->get_logger(), "myTimerCallback: [%s]", msg.data.c_str());
         pub_->publish(msg);
     }
 
     void myTopicCallback(std_msgs::msg::String::SharedPtr msg) {
         //
+        std::vector<rclcpp::Parameter> all_new_parameters{
+            rclcpp::Parameter("name", msg->data), rclcpp::Parameter("x_pos", 10),
+            rclcpp::Parameter("y_pos", 20), rclcpp::Parameter("is_ok", true)};
+        this->set_parameters(all_new_parameters);
+
         RCLCPP_INFO(this->get_logger(), "chnageName: [%s]", msg->data.c_str());
     }
 

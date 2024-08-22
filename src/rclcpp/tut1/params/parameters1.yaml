@@ -1,4 +1,4 @@
-some_node:
+myparam_node:
   ros__parameters:
     name: foo
     x_pos: 10

@@ -26,7 +26,7 @@ ament_target_dependencies(mytalker_with_parameter rclcpp std_msgs)
 add_executable(myparam src/myparam.cpp)
 ament_target_dependencies(myparam rclcpp std_msgs)
 
-install(DIRECTORY launch DESTINATION share/${PROJECT_NAME})
+install(DIRECTORY launch params DESTINATION share/${PROJECT_NAME})
 
 install(TARGETS mytalker mylistener mytalker_with_parameter myparam
         DESTINATION lib/${PROJECT_NAME}
