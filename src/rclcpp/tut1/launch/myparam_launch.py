@@ -22,7 +22,11 @@ def generate_launch_description():
         "params_file", default_value=default_params_file, description="params file"
     )
 
-    param_substitutions = {"name": "Holy", "x_pos": "100", "y_pos": "200"}
+    param_substitutions = {
+        "name": "Holy",
+        "x_pos": "100",
+        "y_pos": "200",
+    }
 
     configured_params = ParameterFile(
         param_file=RewrittenYaml(
@@ -44,6 +48,7 @@ def generate_launch_description():
         parameters=[
             configured_params,
             {"name": "Marry"},
+            {"z_pos": 123},
             {"is_ok": False},
         ],
     )
