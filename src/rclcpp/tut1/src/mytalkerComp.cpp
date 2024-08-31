@@ -1,18 +1,14 @@
-// write a simple node which mimic the talker node
-// Please use ROS2 stack to implement this node
-//
-#include <memory>
-
-#include "rclcpp/rclcpp.hpp"
 #include "std_msgs/msg/string.hpp"
+#include <memory>
+#include <rclcpp/rclcpp.hpp>
 
 using namespace std::chrono_literals;
 
-class MyTalker : public rclcpp::Node {
+class MyTalkerComp : public rclcpp::Node {
   public:
-    MyTalker() : Node("my_talker") {
+    MyTalkerComp(const rclcpp::NodeOptions& options) : Node("my_talker", options) {
         publisher_ = this->create_publisher<std_msgs::msg::String>("chatter", 10);
-        timer_ = this->create_wall_timer(50ms, std::bind(&MyTalker::timer_callback, this));
+        timer_ = this->create_wall_timer(50ms, std::bind(&MyTalkerComp::timer_callback, this));
     }
 
   private:
@@ -27,9 +23,5 @@ class MyTalker : public rclcpp::Node {
     size_t count_;
 };
 
-int main(int argc, char* argv[]) {
-    rclcpp::init(argc, argv);
-    rclcpp::spin(std::make_shared<MyTalker>());
-    rclcpp::shutdown();
-    return 0;
-}
+#include <rclcpp_components/register_node_macro.hpp>
+RCLCPP_COMPONENTS_REGISTER_NODE(MyTalkerComp)
