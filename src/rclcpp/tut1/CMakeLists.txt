@@ -14,6 +14,8 @@ find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(std_msgs REQUIRED)
 find_package(rclcpp_components REQUIRED)
+find_package(rclcpp_lifecycle REQUIRED)
+find_package(lifecycle_msgs REQUIRED)
 
 add_executable(mytalker src/mytalker.cpp)
 ament_target_dependencies(mytalker rclcpp std_msgs)
@@ -34,6 +36,11 @@ rclcpp_components_register_nodes(mytalker_comp "MyTalkerComp")
 add_library(mylistener_comp SHARED src/mylistenerComp.cpp)
 ament_target_dependencies(mylistener_comp rclcpp rclcpp_components std_msgs)
 rclcpp_components_register_nodes(mylistener_comp "MyListenerComp")
+
+add_executable(lifecycle_talker src/mytalkerlc.cpp)
+ament_target_dependencies(
+  lifecycle_talker "lifecycle_msgs" "rclcpp_lifecycle" "std_msgs"
+)
 
 install(DIRECTORY launch params DESTINATION share/${PROJECT_NAME})
 
@@ -56,5 +63,7 @@ install(TARGETS mylistener_comp
         LIBRARY DESTINATION lib
         RUNTIME DESTINATION bin
 )
+
+install(TARGETS lifecycle_talker DESTINATION lib/${PROJECT_NAME})
 
 ament_package()

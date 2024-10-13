@@ -12,6 +12,11 @@ find_package(std_msgs REQUIRED)
 add_executable(simple_node src/simple_node.cpp)
 ament_target_dependencies(simple_node rclcpp std_msgs)
 
-install(TARGETS simple_node DESTINATION lib/${PROJECT_NAME})
+add_executable(simple_node_single_executor src/simple_node_single_executor.cpp)
+ament_target_dependencies(simple_node_single_executor rclcpp std_msgs)
+
+install(TARGETS simple_node_single_executor simple_node
+        DESTINATION lib/${PROJECT_NAME}
+)
 
 ament_package()

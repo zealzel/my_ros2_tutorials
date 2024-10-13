@@ -42,11 +42,13 @@ def generate_launch_description():
                 package="tut1",
                 plugin="MyTalkerComp",
                 name="talker",
+                extra_arguments=[{"use_intra_process_comms": True}],
             ),
             ComposableNode(
                 package="tut1",
                 plugin="MyListenerComp",
                 name="listener",
+                extra_arguments=[{"use_intra_process_comms": True}],
             ),
         ],
         condition=IfCondition(LaunchConfiguration("use_composition")),
