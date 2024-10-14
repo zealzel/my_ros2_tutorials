@@ -40,12 +40,8 @@ class MySimpleNode : public rclcpp::Node {
 int main(int argc, char** argv) {
     // Initialize the ROS2 system
     rclcpp::init(argc, argv);
-    rclcpp::executors::SingleThreadedExecutor exec;
-    // MySimpleNode node = MySimpleNode(); // wrong
-    rclcpp::Node::SharedPtr node = std::make_shared<MySimpleNode>();
-    exec.add_node(node);
-    exec.spin();
-
+    auto node = std::make_shared<MySimpleNode>();
+    rclcpp::spin(node);
     rclcpp::shutdown();
 
     return 0;

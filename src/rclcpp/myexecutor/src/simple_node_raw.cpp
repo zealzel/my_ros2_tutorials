@@ -11,7 +11,7 @@ int main(int argc, char** argv) {
     rclcpp::init(argc, argv);
 
     // create a Node pointer named "some_node"
-    auto some_node = std::make_shared<rclcpp::Node>("some_node");
+    auto some_node = std::make_shared<rclcpp::Node>("simple_node_raw");
 
     rclcpp::Publisher<std_msgs::msg::String>::SharedPtr pub_ =
         some_node->create_publisher<std_msgs::msg::String>("my_word", 10);
