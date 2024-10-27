@@ -1,0 +1,50 @@
+import rclpy
+from rclpy.node import Node
+from sensor_msgs.msg import Image
+from cv_bridge import CvBridge
+import cv2
+
+
+class ImageSubscriber(Node):
+    def __init__(self):
+        super().__init__("image_subscriber")
+        self.subscription = self.create_subscription(
+            Image, "/camera/image_raw", self.listener_callback, 10
+        )
+        self.br = CvBridge()
+        self.face_cascade = cv2.CascadeClassifier(
+            "/home/zealzel/my_ros2_tutorials/haarcascade_frontalface_default.xml"
+        )
+        if self.face_cascade.empty():
+            self.get_logger().error(
+                "Failed to load haarcascade_frontalface_default.xml"
+            )
+
+    def listener_callback(self, data):
+        self.get_logger().info("Receiving video frame")
+        try:
+            current_frame = self.br.imgmsg_to_cv2(data, "bgr8")
+            gray_frame = cv2.cvtColor(current_frame, cv2.COLOR_BGR2GRAY)
+            small_frame = cv2.resize(gray_frame, (0, 0), fx=0.5, fy=0.5)
+            faces = self.face_cascade.detectMultiScale(small_frame, scaleFactor=1.1, minNeighbors=5, minSize=(30, 30))
+            for (x, y, w, h) in faces:
+                x, y, w, h = int(x * 2), int(y * 2), int(w * 2), int(h * 2)
+                cv2.rectangle(current_frame, (x, y), (x+w, y+h), (255, 0, 0), 2)
+            cv2.imshow("camera", current_frame)
+            cv2.waitKey(1)
+
+        except cv2.error as e:
+            self.get_logger().error(f"Could not convert image: {e}")
+
+
+def main(args=None):
+    rclpy.init(args=args)
+    image_subscriber = ImageSubscriber()
+    rclpy.spin(image_subscriber)
+    image_subscriber.destroy_node()
+    rclpy.shutdown()
+
+
+if __name__ == "__main__":
+    main()
+
